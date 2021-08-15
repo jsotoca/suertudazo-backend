@@ -6,7 +6,6 @@ function tarea_programada(){
     cron.schedule('* * * * *',async ()=>{
         const resultados = await scrappingResultadosTinka();
         db.setItem('resultados',JSON.stringify(resultados));
-        console.log(resultados);
     });
 }
 

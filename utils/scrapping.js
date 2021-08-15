@@ -18,8 +18,10 @@ async function scrappingResultadosTinka(){
     let superior,inferior,texto_superior,texto_inferior;
     let sorteo = {};
     let sorteos = [];
+    let ultimaJugada = [];
 
     let $ = cheerio.load(html);
+    let i = 1;
     $('.box-last-game').each((i,element)=> {
         superior = $(element).find('.top-last-game > h3').text();
         inferior = $(element).find('.bottom-last-game > h5').text();
@@ -39,8 +41,10 @@ async function scrappingResultadosTinka(){
             boliyapa: texto_inferior[12]
         }
         sorteos.push(sorteo);
+        if(i == 0) ultimaJugada = sorteo;
+        i++;
     });
-    return sorteos;
+    return {sorteos, ultimaJugada};
 }
 
 module.exports = {
